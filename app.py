@@ -83,19 +83,18 @@ if st.button("Predict"):
 
     if predicted_class == 1:
         advice = (
-            f"According to our model, you have a high risk of Microinvasion . "
-            f"The model predicts that your probability of having Microinvasion  is {probability:.1f}%. "
-            "While this is just an estimate, it suggests that you may be at significant risk. "
-            "I recommend that you consult a cardiologist as soon as possible for further evaluation and "
-            "to ensure you receive an accurate diagnosis and necessary treatment."
+            f"According to our predictive model, you have a high risk of progression to invasive cervical cancer, with an estimated probability of {probability:.1f}%.  "
+            f"Although this result is an estimate based on the model's calculations, it suggests a significant potential risk. "
+            "I strongly recommend that you consult a gynecological specialist as soon as possible for further evaluation, accurate diagnosis, "
+            "and timely management or treatment if necessary. "
+
         )
     else:
         advice = (
-            f"According to our model, you have a low risk of Microinvasion . "
-            f"The model predicts that your probability of not having Microinvasion  is {probability:.1f}%. "
-            "However, maintaining a healthy lifestyle is still very important. "
-            "I recommend regular check-ups to monitor your health, "
-            "and to seek medical advice promptly if you experience any symptoms."
+            f"According to our predictive model, your risk of developing invasive cervical cancer is relatively low, with an estimated probability of {probability:.1f}%. "
+            f"However, it remains very important to maintain a healthy lifestyle and undergo regular health screenings. "
+            "We recommend scheduling periodic check-ups and promptly consulting a doctor if you experience any concerning symptoms. "
+
         )
 
     st.write(advice)
