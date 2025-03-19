@@ -49,19 +49,19 @@ st.title("Microinvasion Prediction System")
 age = st.selectbox("Age (0=<48, 1=>48):", options=[0, 1], format_func=lambda x: '<48 (0)' if x == 0 else '>48 (1)')
 
 # sex: categorical selection
-HPV = st.selectbox("HPV (0=Negative, 1=Positive):", options=[0, 1], format_func=lambda x: 'Negative (0)' if x == 0 else 'Positive (1)')
+HPV = st.selectbox("HPV16/18 (0=Negative, 1=Positive):", options=[0, 1], format_func=lambda x: 'Negative (0)' if x == 0 else 'Positive (1)')
 
 # cp: categorical selection
-TCT_HSIL = st.selectbox("TCT_HSIL (0=Negative, 1=Positive):", options=[0, 1], format_func=lambda x: 'Negative (0)' if x == 0 else 'Positive (1)')
+TCT_HSIL = st.selectbox("TCT≥ HSIL (0=Negative, 1=Positive):", options=[0, 1], format_func=lambda x: 'Negative (0)' if x == 0 else 'Positive (1)')
 
 # trestbps: numerical input
 ECC = st.selectbox("ECC (0=Negative, 1=Positive):", options=[0, 1], format_func=lambda x: 'Negative (0)' if x == 0 else 'Positive (1)')
 
 # chol: numerical input
-margin = st.selectbox("margin (0=Negative, 1=Positive):", options=[0, 1], format_func=lambda x: 'Negative (0)' if x == 0 else 'Positive (1)')
+margin = st.selectbox("Margin (0=Negative, 1=Positive):", options=[0, 1], format_func=lambda x: 'Negative (0)' if x == 0 else 'Positive (1)')
 
 # fbs: categorical selection
-Transformation = st.selectbox("Transformation (0=Negative, 1=Positive):", options=[0, 1], format_func=lambda x: 'Negative (0)' if x == 0 else 'Positive (1)')
+Transformation = st.selectbox("Transformation Type (0=other, 1=III):", options=[0, 1], format_func=lambda x: 'Other (0)' if x == 0 else 'III (1)')
 
 
 # Process inputs and make predictions
@@ -72,7 +72,7 @@ features = np.array([feature_values])
 if st.button("Predict"):
     # Predict class and probabilities
     predicted_class = model.predict(features)[0]
-    predicted_proba = model.predict_proba(features)[1]
+    predicted_proba = model.predict_proba(features)[0]
 
     # Display prediction results
     st.write(f"**Predicted Class:** {predicted_class}")
