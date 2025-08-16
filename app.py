@@ -37,7 +37,7 @@ thal_options = {
 
 # Define feature names
 feature_names = [
-    "age", "HPV", "TCT_HSIL", "ECC", "margin","Transformation"
+    "Margin", "ECC", "TCT≥HSIL","HPV16/18","TZIII","Age"
 ]
 
 # Streamlit user interface
@@ -65,7 +65,7 @@ Transformation = st.selectbox("Transformation Type (0=other, 1=III):", options=[
 
 
 # Process inputs and make predictions
-feature_values = [age, HPV, TCT_HSIL, ECC, margin, Transformation]
+feature_values = [margin,ECC, TCT_HSIL,HPV,Transformation, age]
 features = np.array([feature_values])
 
 
@@ -76,14 +76,14 @@ if st.button("Predict"):
 
     # Display prediction results
     st.write(f"**Predicted Class:** {predicted_class}")
-    st.write(f"**Prediction Probabilities:** {predicted_proba}")
+    st.write(f"**MIC Probabilities:** {predicted_proba[1] * 100:.2f}%")
 
     # Generate advice based on prediction results
-    probability = predicted_proba[predicted_class] * 100
+    probability = predicted_proba[1] * 100
 
     if predicted_class == 1:
         advice = (
-            f"According to our predictive model, you have a high risk of progression to invasive cervical cancer, with an estimated probability of {probability:.1f}%.  "
+            f"According to our predictive model, you have a high risk of progression to invasive cervical cancer, with an estimated probability of {probability:.2f}%.  "
             f"Although this result is an estimate based on the model's calculations, it suggests a significant potential risk. "
             "I strongly recommend that you consult a gynecological specialist as soon as possible for further evaluation, accurate diagnosis, "
             "and timely management or treatment if necessary. "
@@ -91,7 +91,7 @@ if st.button("Predict"):
         )
     else:
         advice = (
-            f"According to our predictive model, your risk of developing invasive cervical cancer is relatively low, with an estimated probability of {probability:.1f}%. "
+            f"According to our predictive model, your risk of developing invasive cervical cancer is relatively low, with an estimated probability of {probability:.2f}%. "
             f"However, it remains very important to maintain a healthy lifestyle and undergo regular health screenings. "
             "We recommend scheduling periodic check-ups and promptly consulting a doctor if you experience any concerning symptoms. "
 
